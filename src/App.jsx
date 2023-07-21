@@ -1,11 +1,14 @@
+//MODULES
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //COMPONENTS
 import Layout from './components/Layout';
-import Home from './pages/Home';
 import Login from './components/Login'
 import Listado from "./components/Listado";
+
+//LIBS
+
 
 function App() {
 	return (
@@ -15,12 +18,7 @@ function App() {
 					path='/'
 					element={<Layout />}>
 					<Route
-						index
 						path='/'
-						element={<Home />}
-					/>
-					<Route
-						path='login'
 						element={<Login />}
 					/>
 					<Route

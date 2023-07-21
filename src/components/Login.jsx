@@ -1,21 +1,73 @@
-//modules
+//MODULES
+import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-//components
+//COMPONENTS
 
-//libs
+//LIBS
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
+	const navigate = useNavigate();
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const email = e.target.email.value;
+		const password = e.target.password.value;
+
+		const regexEmail =
+			/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+		//VALIDACION DE FORM
+
+		if (email === '' || password === '') {
+			toast.error('Los campos no pueden estar vacios', {
+				position: toast.POSITION.BOTTOM_CENTER,
+				autoClose: 3000,
+			});
+			return;
+		}
+
+		if (password !== '' && !regexEmail.test(email)) {
+			toast.error('Ingresá un email valido', {
+				position: toast.POSITION.BOTTOM_CENTER,
+				autoClose: 3000,
+			});
+			return;
+		}
+		//FIN VALIDACION FORM
+
+		//PETICION DE TOKEN
+		axios
+			.post('http://challenge-react.alkemy.org', { email, password })
+			.then((res) => {
+				localStorage.setItem('token', res.data.token);
+				toast('Bienvenido!', {
+					position: toast.POSITION.BOTTOM_CENTER,
+					autoClose: 3000,
+				});
+				navigate('/listado');
+			})
+			.catch((error) => {
+				toast.error('Alguno de los datos es incorrecto. Intenta de nuevo', {
+					position: toast.POSITION.BOTTOM_CENTER,
+					autoClose: 3000,
+				});
+			});
+		//FIN PETICION DE TOKEN
+	};
+
+let token = localStorage.getItem('token')
+
 	return (
 		<>
-			{/* {token && <Navigate to='/listado' />} */}
+			{token && <Navigate to='/listado' />}
 
 			<div className='container'>
 				<h2>Login component</h2>
 				<h2>Ingresá</h2>
-				<form action=''>
-					{/* <form onSubmit={handleSubmit}> */}
+				<form onSubmit={handleSubmit}>
 					<label htmlFor='email'>Email*</label>
 					<br />
 					<input
@@ -34,6 +86,7 @@ const Login = () => {
 					<br />
 					<button type='submit'>Ingresar</button>
 				</form>
+				<ToastContainer />
 			</div>
 		</>
 	);
