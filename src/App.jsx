@@ -7,7 +7,7 @@ import Layout from './components/Layout';
 import Login from './components/Login';
 import Listado from './components/Listado';
 import Details from './components/Details';
-import SearhResults from './components/SearchResults';
+import SearchResults from './components/SearchResults';
 
 //LIBS
 
@@ -48,7 +48,7 @@ function App() {
 					/>
 					<Route
 						path='search-results/:keyword'
-						element={<SearhResults />}
+						element={<SearchResults />}
 					/>
 				</Route>
 			</Routes>
