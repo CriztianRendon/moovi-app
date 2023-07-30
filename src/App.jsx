@@ -1,22 +1,30 @@
 //MODULES
-import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 //COMPONENTS
 import Layout from './components/Layout';
-import Login from './components/Login'
-import Listado from "./components/Listado";
+import Login from './components/Login';
+import Listado from './components/Listado';
+import Details from './components/Details';
+import SearhResults from './components/SearchResults';
 
 //LIBS
 
-
 function App() {
+	const navigate = useNavigate();
+
+	const deleteToken = () => {
+		sessionStorage.removeItem('token');
+		navigate('/');
+	};
+
 	return (
 		<>
 			<Routes>
 				<Route
 					path='/'
-					element={<Layout />}>
+					element={<Layout deleteToken={deleteToken} />}>
 					<Route
 						path='/'
 						element={<Login />}
@@ -24,6 +32,23 @@ function App() {
 					<Route
 						path='listado'
 						element={<Listado />}
+					/>
+					<Route
+						path='details/:id'
+						element={<Details />}
+					/>
+					<Route
+						path='*'
+						element={
+							<Navigate
+								to='/'
+								replace
+							/>
+						}
+					/>
+					<Route
+						path='search-results/:keyword'
+						element={<SearhResults />}
 					/>
 				</Route>
 			</Routes>

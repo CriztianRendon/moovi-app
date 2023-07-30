@@ -42,7 +42,7 @@ const Login = () => {
 		axios
 			.post('http://challenge-react.alkemy.org', { email, password })
 			.then((res) => {
-				localStorage.setItem('token', res.data.token);
+				sessionStorage.setItem('token', res.data.token);
 				toast('Bienvenido!', {
 					position: toast.POSITION.BOTTOM_CENTER,
 					autoClose: 3000,
@@ -58,7 +58,7 @@ const Login = () => {
 		//FIN PETICION DE TOKEN
 	};
 
-let token = localStorage.getItem('token')
+let token = sessionStorage.getItem('token')
 
 	return (
 		<>
@@ -70,7 +70,7 @@ let token = localStorage.getItem('token')
 				<form onSubmit={handleSubmit}>
 					<label htmlFor='email'>Email*</label>
 					<br />
-					<input
+					<input className='border border-slate-500 px-3 py-1'
 						type='text'
 						name='email'
 						id='email'
@@ -78,7 +78,7 @@ let token = localStorage.getItem('token')
 					<br />
 					<label htmlFor='password'>Contraseña*</label>
 					<br />
-					<input
+					<input className='border border-slate-500 px-3 py-1'
 						type='password'
 						name='password'
 						id='password'

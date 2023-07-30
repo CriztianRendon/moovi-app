@@ -2,15 +2,17 @@ import { Outlet } from 'react-router-dom';
 //COMPONENTS
 import Navbar from './Navbar'
 import Buscador from "./Buscador";
+import Footer from "./Footer";
 //LIBRARIES
 
 
-const Layout = () => {
+const Layout = ({deleteToken}) => {
   return (
 <>
-  <Navbar />
+  <Navbar deleteToken={deleteToken} />
   <Buscador />
   <Outlet />
+  <Footer />
 </>
   )
 }

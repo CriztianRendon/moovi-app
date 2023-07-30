@@ -1,27 +1,30 @@
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ deleteToken }) => {
 	return (
 		<>
-			<div className='container'>
-				<h1>Navbar component</h1>
-				<nav className='mt-3' >
-					<ul className='flex'>
-						<li className='px-5 py-1 mx-5 ring-2 ring-violet-500 hover:ring-violet-300 hover:bg-violet-500 active:bg-violet-600  rounded-lg'>
-							<Link 
-								to='/'>
-								Login
-							</Link>
+			<header className='container'>
+				<nav className='flex my-3'>
+					<Link
+						to='/'
+						className='mr-auto text-2xl font-black cursor-pointer'>
+						mO·Ovi
+					</Link>
+					<ul className='flex justify-evenly'>
+						<li className='px-5 py-1 mx-5 ring-2 ring-violet-500 hover:ring-violet-300 hover:bg-violet-500 active:bg-violet-600 rounded-lg cursor-pointer'>
+							<Link to='/listado'>Listado</Link>
 						</li>
-						<li className='px-5 py-1 mx-5 ring-2 ring-violet-500 hover:ring-violet-300 hover:bg-violet-500 active:bg-violet-600  rounded-lg'>
-							<Link
-								to='/listado'>
-								Listado
-							</Link>
+						<li className='px-5 py-1 mx-5 ring-2 ring-violet-500 hover:ring-violet-300 hover:bg-violet-500 active:bg-violet-600 rounded-lg cursor-pointer'>
+							<Link to='/listado'>💜 0</Link>
 						</li>
+						<button
+							className='px-5 py-1 mx-5 ring-2 ring-violet-500 hover:ring-violet-300 hover:bg-violet-500 active:bg-violet-600 rounded-lg'
+							onClick={deleteToken}>
+							Salir
+						</button>
 					</ul>
 				</nav>
-			</div>
+			</header>
 		</>
 	);
 };
