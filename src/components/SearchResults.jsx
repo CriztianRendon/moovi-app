@@ -19,7 +19,13 @@ const SearchResults = ({ addOrRemFronFavs }) => {
 			)
 			.then((resp) => {
 				setMovieResults(resp.data.results);
-				console.log(resp.data.results);
+        if (resp.data.results.length === 0) {
+          toast.error('No hay resultados para tu busqueda. Intenta con otra palabra', {
+            position: toast.POSITION.BOTTOM_CENTER,
+            autoClose: 5000,
+          });
+          navigate(`/`, { replace: false });
+        }
 			})
 			.catch((error) => {
 				toast.error('Algo falló en la busqueda. Intenta de nuevo', {
@@ -30,14 +36,12 @@ const SearchResults = ({ addOrRemFronFavs }) => {
 			});
 	}, [keyword]);
 
+
+
 	return (
 		<>
-			{movieResults - length === 0 ? (
-				<h2 className='text-xl mb-5'>
-					No hay resultados para <b>{keyword}</b>
-				</h2>
-			) : (
-				<>
+			{movieResults.length !== 0 && (
+				<div className='container'>
 					<h2 className='text-xl mb-5'>
 						Acá tenes los resultados para <b>{keyword}</b>
 					</h2>
@@ -72,7 +76,7 @@ const SearchResults = ({ addOrRemFronFavs }) => {
 									<div className='p-3 self-end justify-self-end'>
 										<Link
 											className='text-sm font-light hover:text-violet-300'
-											to={`/detalle?movieId=${movie.id}`}>
+											to={`/details/${movie.id}`}>
 											Más info ➡️
 										</Link>
 									</div>
@@ -80,8 +84,9 @@ const SearchResults = ({ addOrRemFronFavs }) => {
 							);
 						})}
 					</div>
-				</>
+				</div>
 			)}
+			<ToastContainer />
 		</>
 	);
 };
