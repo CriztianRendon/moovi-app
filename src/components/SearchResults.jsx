@@ -12,20 +12,23 @@ const SearchResults = ({ addOrRemFronFavs }) => {
 	const [movieResults, setMovieResults] = useState([]);
 
 	useEffect(() => {
-		console.log(keyword);
+		// console.log(keyword);
 		axios
 			.get(
 				`https://api.themoviedb.org/3/search/movie?api_key=06419c9c5f3e99fd614ed7eead050900&language=es-ES&sort_by=popularity.desc&include_adult=false&page=1&query=${keyword}`
 			)
 			.then((resp) => {
 				setMovieResults(resp.data.results);
-        if (resp.data.results.length === 0) {
-          toast.error('No hay resultados para tu busqueda. Intenta con otra palabra', {
-            position: toast.POSITION.BOTTOM_CENTER,
-            autoClose: 5000,
-          });
-          navigate(`/`, { replace: false });
-        }
+				if (resp.data.results.length === 0) {
+					toast.error(
+						'No hay resultados para tu busqueda. Intenta con otra palabra',
+						{
+							position: toast.POSITION.BOTTOM_CENTER,
+							autoClose: 5000,
+						}
+					);
+					navigate(`/`, { replace: false });
+				}
 			})
 			.catch((error) => {
 				toast.error('Algo falló en la busqueda. Intenta de nuevo', {
@@ -35,8 +38,6 @@ const SearchResults = ({ addOrRemFronFavs }) => {
 				navigate(`/`, { replace: false });
 			});
 	}, [keyword]);
-
-
 
 	return (
 		<>
@@ -57,12 +58,14 @@ const SearchResults = ({ addOrRemFronFavs }) => {
 										data-movie-id={movie.id}>
 										💜
 									</button>
-									<img
-										src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-										alt={movie.title}
-									/>
+									<figure>
+										<img
+											src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+											alt={movie.title}
+										/>
+									</figure>
 									<div className='px-3'>
-										<h1 className='font-kanit text-center text-xl my-3'>
+										<h1 className='font-semibold text-center text-xl my-3'>
 											{movie.title}
 										</h1>
 										<div className='text-xs flex justify-between mb-3'>
