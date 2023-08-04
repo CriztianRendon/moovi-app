@@ -8,26 +8,69 @@ import { toast } from 'react-toastify';
 export const MainContext = createContext();
 
 export const MainProvider = ({ children }) => {
-	//SET MOVIE LIST
-	const [movieList, setMovieList] = useState([]);
+	//SET MOVIE LISTS
+	const [movieListNow, setMovieListNow] = useState([]);
+	const [movieListTopRated, setMovieListTopRated] = useState([]);
+	const [movieListUpcoming, setMovieListUpcoming] = useState([]);
+	const optionsAxios = {
+		method: 'GET',
+		headers: {
+			accept: 'application/json',
+			Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNjQxOWM5YzVmM2U5OWZkNjE0ZWQ3ZWVhZDA1MDkwMCIsInN1YiI6IjYzZGZjOWQ2Y2QyMDQ2MDA4MWUyNDc4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wrLtNTAw4akREV93JXsTfPgE1nQw4rxRVYfPd7-Pk8Q'
+		}
+	};
 
-	useEffect(() => {
-		axios
-			.get(
-				'https://api.themoviedb.org/3/discover/movie?api_key=06419c9c5f3e99fd614ed7eead050900&language=es-ES&sort_by=popularity.desc&page=1'
-			)
-			.then((resp) => {
-				const apiData = resp.data.results;
-				setMovieList(apiData);
-			})
-			.catch((error) => {
-				toast.error('Algo falló al cargar la lista de peliculas. ReloadIt!', {
-					position: toast.POSITION.BOTTOM_CENTER,
-					autoClose: 1500,
-				});
+  useEffect(() => {
+    // Realizar múltiples peticiones en paralelo usando Promise.all
+    Promise.all([getMovieListNow(), getMovieListTopRated(), getMovieListUpcoming()])
+      .then(([dataMovieListNow, dataMovieListTopRated, dataMovieListUpcoming]) => {
+				setMovieListNow(dataMovieListNow);
+				setMovieListTopRated(dataMovieListTopRated);
+				setMovieListUpcoming(dataMovieListUpcoming);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+
+	const getMovieListNow = () => {
+		return axios('https://api.themoviedb.org/3/movie/now_playing?language=es-ES&page=1', optionsAxios)
+		.then((resp) => resp.data.results
+		)
+		.catch((error) => {
+			toast.error('Algo falló al cargar la lista de peliculas populares. ReloadIt!', {
+				position: toast.POSITION.BOTTOM_CENTER,
+				autoClose: 1000,
 			});
-	}, []);
-	//END SET MAIN MOVIE LIST
+		});
+	}
+
+	const getMovieListTopRated = () => {
+		return axios('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=1', optionsAxios)
+		.then((resp) => resp.data.results
+		)
+		.catch((error) => {
+			toast.error('Algo falló al cargar la lista de peliculas Top Rated. ReloadIt!', {
+				position: toast.POSITION.BOTTOM_CENTER,
+				autoClose: 1000,
+			});
+		});
+	}
+
+	const getMovieListUpcoming = () => {
+		return axios('https://api.themoviedb.org/3/movie/upcoming?language=es-ES&page=1', optionsAxios)
+		.then((resp) => resp.data.results
+		)
+		.catch((error) => {
+			toast.error('Algo falló al cargar la lista de peliculas de estreno. ReloadIt!', {
+				position: toast.POSITION.BOTTOM_CENTER,
+				autoClose: 1000,
+			});
+		});
+	}
+	//END SET MAIN MOVIE LISTS
+
+	// 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
 
 	//SET FAVS MOVIE LIST
 	const [favsMovieList, setFavsMovieList] = useState([]);
@@ -89,8 +132,9 @@ export const MainProvider = ({ children }) => {
 	return (
 		<MainContext.Provider
 			value={{
-				movieList,
-				setMovieList,
+				movieListNow,
+				movieListTopRated,
+				movieListUpcoming,
         favsMovieList,
         setFavsMovieList,
         addOrRemFromFavs

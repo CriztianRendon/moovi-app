@@ -1,22 +1,25 @@
+//MODULES
 import { Outlet } from 'react-router-dom';
+//CONTEXTS
 //COMPONENTS
-import Navbar from './Navbar'
-import Buscador from "./Buscador";
-import Footer from "./Footer";
+import Navbar from './Navbar';
+import Buscador from './Buscador';
+import Footer from './Footer';
 //LIBRARIES
+import { ToastContainer } from 'react-toastify';
 
+const Layout = ({ deleteToken}) => {
+	return (
+		<>
+			<Navbar
+				deleteToken={deleteToken}
+			/>
+			<Buscador />
+			<Outlet />
+			<ToastContainer />
+			<Footer />
+		</>
+	);
+};
 
-const Layout = ({deleteToken, listMovieFavs}) => {
-  return (
-<>
-  <Navbar deleteToken={deleteToken} listMovieFavs={listMovieFavs}/>
-  <Buscador />
-  <Outlet value={{
-    developer:'Cristian',
-    app: 'moovi'}} />
-  <Footer />
-</>
-  )
-}
-
-export default Layout
+export default Layout;

@@ -6,10 +6,9 @@ import { MainContext } from '../context/MainContext';
 //COMPONENTS
 
 //LIBS
-import { ToastContainer } from 'react-toastify';
 
 const FavsList = () => {
-	const {favsMovieList, addOrRemFromFavs} = useContext(MainContext);
+	const { favsMovieList, addOrRemFromFavs } = useContext(MainContext);
 
 	return (
 		<div className='container'>
@@ -58,7 +57,6 @@ const FavsList = () => {
 					})}
 				</div>
 			)}
-			<ToastContainer />
 		</div>
 	);
 };
