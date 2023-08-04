@@ -64,8 +64,7 @@ let token = sessionStorage.getItem('token')
 		<>
 			{token && <Navigate to='/listado' />}
 
-			<div className='container'>
-				<h2>Login component</h2>
+			<div className='container'> 
 				<h2>Ingresá</h2>
 				<form onSubmit={handleSubmit}>
 					<label htmlFor='email'>Email*</label>

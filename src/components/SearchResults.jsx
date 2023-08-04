@@ -1,24 +1,26 @@
 //MODULES
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 //LIBS
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { MainContext } from '../context/MainContext';
 
-const SearchResults = ({ addOrRemFronFavs }) => {
-	const navigate = useNavigate();
+const SearchResults = () => {
 	const { keyword } = useParams();
+	const { addOrRemFromFavs} = useContext(MainContext);
 
-	const [movieResults, setMovieResults] = useState([]);
+  //SEARCH A MOVIE
+  const navigate = useNavigate();
+  const [movieSearchResults, setMovieSearchResults] = useState([]);
 
 	useEffect(() => {
-		// console.log(keyword);
 		axios
 			.get(
 				`https://api.themoviedb.org/3/search/movie?api_key=06419c9c5f3e99fd614ed7eead050900&language=es-ES&sort_by=popularity.desc&include_adult=false&page=1&query=${keyword}`
 			)
 			.then((resp) => {
-				setMovieResults(resp.data.results);
+				setMovieSearchResults(resp.data.results);
 				if (resp.data.results.length === 0) {
 					toast.error(
 						'No hay resultados para tu busqueda. Intenta con otra palabra',
@@ -38,23 +40,24 @@ const SearchResults = ({ addOrRemFronFavs }) => {
 				navigate(`/`, { replace: false });
 			});
 	}, [keyword]);
+  // END SEARCH A MOVIE
 
 	return (
 		<>
-			{movieResults.length !== 0 && (
+			{movieSearchResults.length !== 0 && (
 				<div className='container'>
 					<h2 className='text-xl mb-5'>
 						Acá tenes los resultados para <b>{keyword}</b>
 					</h2>
 					<div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:space-y-0 justify-items-center md:px-0 mx-auto'>
-						{movieResults.map((movie, idx) => {
+						{movieSearchResults.map((movie, idx) => {
 							return (
 								<div
 									key={idx}
 									className='grid grid-cols-1 ring-2 ring-slate-300 hover:ring-violet-500 rounded-b-lg'>
 									<button
 										className='absolute text-xl p-2 justify-self-end'
-										onClick={addOrRemFronFavs}
+										onClick={addOrRemFromFavs}
 										data-movie-id={movie.id}>
 										💜
 									</button>

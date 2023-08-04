@@ -53,7 +53,7 @@ const Details = () => {
 							/>
 						</figure>
 						<span>{movieDetails.release_date}</span>
-            ···
+						···
 						<span>{movieDetails.vote_average} </span>
 						<p>{movieDetails.overview}</p>
 						<h2>Géneros</h2>

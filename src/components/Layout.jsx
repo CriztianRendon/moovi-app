@@ -6,12 +6,14 @@ import Footer from "./Footer";
 //LIBRARIES
 
 
-const Layout = ({deleteToken}) => {
+const Layout = ({deleteToken, listMovieFavs}) => {
   return (
 <>
-  <Navbar deleteToken={deleteToken} />
+  <Navbar deleteToken={deleteToken} listMovieFavs={listMovieFavs}/>
   <Buscador />
-  <Outlet />
+  <Outlet value={{
+    developer:'Cristian',
+    app: 'moovi'}} />
   <Footer />
 </>
   )
