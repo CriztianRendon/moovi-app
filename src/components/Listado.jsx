@@ -19,10 +19,13 @@ const Listado = () => {
 					replace={true}
 				/>
 			)}
+			<h2 className='text-center font-bold'>Popular</h2>
 			<ListsUI listForRender={movieListNow}></ListsUI>
 			<hr />
+			<h2 className='text-center font-bold'>Top ranked</h2>
 			<ListsUI listForRender={movieListTopRated}></ListsUI>
 			<hr />
+			<h2 className='text-center font-bold'>Upcomig</h2>
 			<ListsUI listForRender={movieListUpcoming}></ListsUI>
 			
 		</>

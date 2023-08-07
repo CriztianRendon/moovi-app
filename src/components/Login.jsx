@@ -40,7 +40,7 @@ const Login = () => {
 
 		//PETICION DE TOKEN
 		axios
-			.post('http://challenge-react.alkemy.org', { email, password })
+			.post('https://challenge-react.alkemy.org', { email, password })
 			.then((res) => {
 				sessionStorage.setItem('token', res.data.token);
 				toast('Bienvenido!', {
