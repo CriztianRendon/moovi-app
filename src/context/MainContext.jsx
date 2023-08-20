@@ -1,5 +1,6 @@
 //MODULES
 import { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //LIBS
 import axios from 'axios';
@@ -8,10 +9,32 @@ import { toast } from 'react-toastify';
 export const MainContext = createContext();
 
 export const MainProvider = ({ children }) => {
-	//SET MOVIE LISTS
+
+//LOGIN
+const navigate = useNavigate()
+const setTokenSessionId = ( tokenSessionId ) => {
+	sessionStorage.setItem('tokenSessionId', tokenSessionId)
+	console.log('Request token OK');
+}
+
+const getTokenSessionId = () => {
+	const tokenSessionId = sessionStorage.getItem('tokenSessionId');
+	return tokenSessionId
+}
+
+const deleteToken = () => {
+	sessionStorage.removeItem('tokenSessionId');
+	navigate('/');
+};
+
+//END LOGIN
+
+
+	//SET MAIN MOVIE LISTS
 	const [movieListNow, setMovieListNow] = useState([]);
 	const [movieListTopRated, setMovieListTopRated] = useState([]);
 	const [movieListUpcoming, setMovieListUpcoming] = useState([]);
+
 	const optionsAxios = {
 		method: 'GET',
 		headers: {
@@ -69,8 +92,6 @@ export const MainProvider = ({ children }) => {
 		});
 	}
 	//END SET MAIN MOVIE LISTS
-
-	// 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
 
 	//SET FAVS MOVIE LIST
 	const [favsMovieList, setFavsMovieList] = useState([]);
@@ -137,7 +158,10 @@ export const MainProvider = ({ children }) => {
 				movieListUpcoming,
         favsMovieList,
         setFavsMovieList,
-        addOrRemFromFavs
+        addOrRemFromFavs,
+				getTokenSessionId,
+				setTokenSessionId,
+				deleteToken
 			}}>
 			{children}
 		</MainContext.Provider>

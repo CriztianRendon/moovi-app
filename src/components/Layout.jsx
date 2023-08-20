@@ -1,21 +1,24 @@
 //MODULES
+import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 //CONTEXTS
+import { MainContext } from '../context/MainContext';
+
 //COMPONENTS
-import Navbar from './Navbar';
-import Buscador from './Buscador';
+import Header from './Header';
 import Footer from './Footer';
 //LIBRARIES
 import { ToastContainer } from 'react-toastify';
 
-const Layout = ({ deleteToken}) => {
+const Layout = () => {
+	const {getTokenSessionId} = useContext(MainContext)
+
+	let login = getTokenSessionId();
+
 	return (
 		<>
-			<Navbar
-				deleteToken={deleteToken}
-			/>
-			<Buscador />
-			<Outlet />
+			<Header login={login}/>
+			<Outlet login={login}/>
 			<ToastContainer />
 			<Footer />
 		</>

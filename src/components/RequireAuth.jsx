@@ -1,8 +1,19 @@
-const RequireAuth = () => {
-  // LOGICA PARA PROTECCION DE RUTAS
-  return (
-    <></>
-  )
-}
+import { Navigate } from 'react-router-dom';
 
-export default RequireAuth
+const RequireAuth = ({ children }) => {
+
+	let tokenSessionId = sessionStorage.getItem('tokenSessionId');
+
+	if (!tokenSessionId) {
+		return (
+			<Navigate
+				to='/login'
+				replace
+			/>
+		);
+	}
+
+	return children;
+};
+
+export default RequireAuth;

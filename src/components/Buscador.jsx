@@ -23,6 +23,7 @@ const Buscador = () => {
 	};
 
 	return (
+
 		<div className='container'>
 			<form
 				className='flex'

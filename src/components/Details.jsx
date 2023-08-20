@@ -9,7 +9,6 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
 const Details = () => {
-	let token = sessionStorage.getItem('token');
 	const { id } = useParams();
 	
 
@@ -35,13 +34,6 @@ const Details = () => {
 
 	return (
 		<>
-			{!token && (
-				<Navigate
-					to='/login'
-					replace={true}
-				/>
-			)}
-
 			{movieDetails && (
 				<>
 					<div className='container'>
