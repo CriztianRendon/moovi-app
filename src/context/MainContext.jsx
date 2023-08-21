@@ -107,6 +107,7 @@ const deleteToken = () => {
 	//ADD OR REMOVE A MOVIE OF FAVS MOVIE LIST
   //CREATE LIST OF FAVS MOVIES IN LOCAL STORAGE
 	const addOrRemFromFavs = (e) => {
+		e.stopPropagation()
 		const itemFavsMovieList = localStorage.getItem('itemFavsMovieList');
 		let favsMovieList;
 
@@ -120,7 +121,7 @@ const deleteToken = () => {
     const getCardMovie = e.currentTarget.parentElement;
 		const infoMovie = {
 			id: e.currentTarget.dataset.movieId,
-			title: getCardMovie.querySelector('h1').innerText,
+			// title: getCardMovie.querySelector('h1').innerText,
 			imgURL: getCardMovie.querySelector('img').getAttribute('src'),
 		};
 

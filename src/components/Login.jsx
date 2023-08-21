@@ -1,5 +1,5 @@
 //MODULES
-import { useEffect, useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 //CONTEXTS
@@ -77,7 +77,7 @@ const Login = ({ login }) => {
 					position: toast.POSITION.BOTTOM_CENTER,
 					autoClose: 500,
 				});
-				navigate('/listado');
+				navigate('/listado', { replace: true });
 			})
 			.catch((error) => {
 				toast.error('Algo falló al iniciar sesiòn. Intenta de nuevo', {
@@ -89,30 +89,38 @@ const Login = ({ login }) => {
 		// END REQUEST GUEST SESSION ID
 	};
 
+	let tokenSessionId = sessionStorage.getItem('tokenSessionId')
+
 	return (
 		<>
-			<div className='container'>
-				<h2>Ingresá</h2>
-				<form onSubmit={handleSubmit}>
-					<label htmlFor='email'>Email*</label>
-					<br />
+		{tokenSessionId && <Navigate to='/listado'/>}
+			<div className='container  py-10 px-5 items-center'>
+				<h2 className='text-white text-center text-xl mb-5'>Ingresá</h2>
+				<form
+					className='flex flex-col gap-5 items-center '
+					onSubmit={handleSubmit}>
 					<input
-						className='border border-slate-500 px-3 py-1'
-						type='text'
+						className='w-full text-white text-md px-5 py-3 rounded bg-slate-700 focus:bg-slate-600 border border-transparent focus:outline-none focus:ring focus:ring-purple-900 focus:border-transparent'
+						placeholder='Email'
+						required
+						type='email'
 						name='email'
 						id='email'
 					/>
-					<br />
-					<label htmlFor='password'>Contraseña*</label>
-					<br />
 					<input
-						className='border border-slate-500 px-3 py-1'
+						className='w-full text-white text-md px-5 py-3 rounded bg-slate-700 focus:bg-slate-600 border border-transparent focus:outline-none focus:ring focus:ring-purple-900 focus:border-transparent'
+						placeholder='Password'
+						required
 						type='password'
 						name='password'
 						id='password'
 					/>
-					<br />
-					<button type='submit'>Ingresar</button>
+					<button
+					className='w-full text-white text-md font-semibold rounded-lg py-3 bg-gradient-to-br from-violet-900 to-blue-900 cursor-pointer'
+						type='submit'>
+						
+							Log In
+					</button>
 				</form>
 				<ToastContainer />
 			</div>

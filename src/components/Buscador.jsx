@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 //LIBS
 import { ToastContainer, toast } from 'react-toastify';
+//ICONS
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Buscador = () => {
 	const navigate = useNavigate();
@@ -23,25 +26,24 @@ const Buscador = () => {
 	};
 
 	return (
-
-		<div className='container'>
+		<div className='flex items-center justify-center flex-grow w-full'>
 			<form
 				className='flex'
 				id='searchForm'
 				onSubmit={handleSearch}>
+			<button className='bg-slate-700 rounded-l-lg' type='submit'>
+				<FontAwesomeIcon
+					className='text-white h-5 p-3'
+					icon={faMagnifyingGlass}
+				/>
+			</button>
 				<input
-					className='px-3 rounded-md ring-2 ring-violet-500 focus:ring-violet-500'
+					className='w-full text-white text-md px-5 py-3 rounded-r-lg bg-slate-700 focus:bg-slate-600 border border-transparent focus:outline-none focus:ring focus:ring-purple-900 focus:border-transparent shadow-xl'
 					type='text'
 					name='keyword'
 					id='keyword'
 					placeholder='Buscá tu pelicula...'
 				/>
-				<br />
-				<button
-					className='mx-5 px-5 py-1 ring-2 ring-violet-500 hover:ring-violet-300 hover:bg-violet-500  rounded-lg'
-					type='submit'>
-					Buscar
-				</button>
 			</form>
 			<ToastContainer />
 		</div>

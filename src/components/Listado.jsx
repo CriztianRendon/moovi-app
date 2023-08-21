@@ -7,19 +7,24 @@ import ListsUI from './ListsUI';
 import { MainContext } from '../context/MainContext';
 
 const Listado = () => {
-	const { movieListNow, movieListTopRated, movieListUpcoming } = useContext(MainContext);
+	const { movieListNow, movieListTopRated, movieListUpcoming } =
+		useContext(MainContext);
 
 	return (
-		<>
-			<h2 className='text-center font-bold'>Popular</h2>
-			<ListsUI listForRender={movieListNow}></ListsUI>
-			<hr />
-			<h2 className='text-center font-bold'>Top ranked</h2>
-			<ListsUI listForRender={movieListTopRated}></ListsUI>
-			<hr />
-			<h2 className='text-center font-bold'>Upcomig</h2>
-			<ListsUI listForRender={movieListUpcoming}></ListsUI>
-		</>
+		<div className='pb-10'>
+			<div className='container mb-5'>
+				<h2 className='text-white text-lg font-bold mb-5 pl-5'>Populares</h2>
+				<ListsUI listForRender={movieListNow}></ListsUI>
+			</div>
+			<div className='container mb-5'>
+				<h2 className='text-white text-lg font-bold mb-5 pl-5'>Top ranked</h2>
+				<ListsUI listForRender={movieListTopRated}></ListsUI>
+			</div>
+			<div className='container mb-5'>
+				<h2 className='text-white text-lg font-bold mb-5 pl-5'>Próximos estrenos</h2>
+				<ListsUI listForRender={movieListUpcoming}></ListsUI>
+			</div>
+		</div>
 	);
 };
 
