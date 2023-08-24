@@ -61,6 +61,7 @@ const deleteToken = () => {
 		.then((resp) => resp.data.results
 		)
 		.catch((error) => {
+			console.log('Error:', error)
 			toast.error('Algo falló al cargar la lista de peliculas populares. ReloadIt!', {
 				position: toast.POSITION.BOTTOM_CENTER,
 				autoClose: 1000,
@@ -73,6 +74,7 @@ const deleteToken = () => {
 		.then((resp) => resp.data.results
 		)
 		.catch((error) => {
+			console.log('Error:', error)
 			toast.error('Algo falló al cargar la lista de peliculas Top Rated. ReloadIt!', {
 				position: toast.POSITION.BOTTOM_CENTER,
 				autoClose: 1000,
@@ -85,6 +87,7 @@ const deleteToken = () => {
 		.then((resp) => resp.data.results
 		)
 		.catch((error) => {
+			console.log('Error:', error)
 			toast.error('Algo falló al cargar la lista de peliculas de estreno. ReloadIt!', {
 				position: toast.POSITION.BOTTOM_CENTER,
 				autoClose: 1000,
@@ -121,8 +124,10 @@ const deleteToken = () => {
     const getCardMovie = e.currentTarget.parentElement;
 		const infoMovie = {
 			id: e.currentTarget.dataset.movieId,
-			// title: getCardMovie.querySelector('h1').innerText,
-			imgURL: getCardMovie.querySelector('img').getAttribute('src'),
+			title: getCardMovie.querySelector('h1').innerText,
+			releaseDate: getCardMovie.querySelector('.releaseDate').innerHTML,
+			ranked: getCardMovie.querySelector('.ranked').innerHTML,
+			backdrop_path: getCardMovie.querySelector('.backdrop_path').getAttribute('src')
 		};
 
     //ADD A MOVIE TO THE LIST

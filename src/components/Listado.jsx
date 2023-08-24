@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 //COMPONENTS
-import ListsUI from './ListsUI';
+import MovieCardSimple from './MovieCardSimple';
 //LIBS
 import { MainContext } from '../context/MainContext';
 
@@ -14,15 +14,15 @@ const Listado = () => {
 		<div className='pb-10'>
 			<div className='container mb-5'>
 				<h2 className='text-white text-lg font-bold mb-5 pl-5'>Populares</h2>
-				<ListsUI listForRender={movieListNow}></ListsUI>
+				<MovieCardSimple listForRender={movieListNow}></MovieCardSimple>
 			</div>
 			<div className='container mb-5'>
 				<h2 className='text-white text-lg font-bold mb-5 pl-5'>Top ranked</h2>
-				<ListsUI listForRender={movieListTopRated}></ListsUI>
+				<MovieCardSimple listForRender={movieListTopRated}></MovieCardSimple>
 			</div>
 			<div className='container mb-5'>
 				<h2 className='text-white text-lg font-bold mb-5 pl-5'>Próximos estrenos</h2>
-				<ListsUI listForRender={movieListUpcoming}></ListsUI>
+				<MovieCardSimple listForRender={movieListUpcoming}></MovieCardSimple>
 			</div>
 		</div>
 	);

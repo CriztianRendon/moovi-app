@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 //COMPONENTS
-import ListsUI from './ListsUI';
+import MovieCardDetails from './MovieCardDetails';
 //LIBS
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -26,16 +26,17 @@ const SearchResults = () => {
 						'No hay resultados para tu busqueda. Intenta con otra palabra',
 						{
 							position: toast.POSITION.BOTTOM_CENTER,
-							autoClose: 5000,
+							autoClose: 1000,
 						}
-					);
-					navigate(`/`, { replace: false });
+						);
+						navigate(-1);
 				}
 			})
 			.catch((error) => {
+				console.log('Error:', error)
 				toast.error('Algo falló en la busqueda. Intenta de nuevo', {
 					position: toast.POSITION.BOTTOM_CENTER,
-					autoClose: 3000,
+					autoClose: 1000,
 				});
 				navigate(`/`, { replace: false });
 			});
@@ -46,10 +47,10 @@ const SearchResults = () => {
 		<>
 			{movieSearchResults.length !== 0 && (
 				<>
-					<h2 className='text-xl mb-5'>
-						Acá tenes los resultados para <b>{keyword}</b>
+					<h2 className='ml-5 text-md'>
+						Resultados para <b>{keyword}</b>
 					</h2>
-					<ListsUI listForRender={movieSearchResults}></ListsUI>
+					<MovieCardDetails listForRender={movieSearchResults}></MovieCardDetails>
 				</>
 			)}
 		</>

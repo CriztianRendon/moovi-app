@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        'md': '0px 15px 15px -11px rgba(0,0,0,0.75);'
+        'md': '0px 16px 16px -12px rgba(0,0,0,0.7);'
       },
       fontFamily: {
         'Righteous': ['Righteous', 'cursive'],

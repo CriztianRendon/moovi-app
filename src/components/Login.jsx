@@ -94,7 +94,7 @@ const Login = ({ login }) => {
 	return (
 		<>
 		{tokenSessionId && <Navigate to='/listado'/>}
-			<div className='container  py-10 px-5 items-center'>
+			<div className='container h-screen py-10 px-5 items-center md:w-1/4'>
 				<h2 className='text-white text-center text-xl mb-5'>Ingresá</h2>
 				<form
 					className='flex flex-col gap-5 items-center '
@@ -102,7 +102,6 @@ const Login = ({ login }) => {
 					<input
 						className='w-full text-white text-md px-5 py-3 rounded bg-slate-700 focus:bg-slate-600 border border-transparent focus:outline-none focus:ring focus:ring-purple-900 focus:border-transparent'
 						placeholder='Email'
-						required
 						type='email'
 						name='email'
 						id='email'
@@ -110,7 +109,6 @@ const Login = ({ login }) => {
 					<input
 						className='w-full text-white text-md px-5 py-3 rounded bg-slate-700 focus:bg-slate-600 border border-transparent focus:outline-none focus:ring focus:ring-purple-900 focus:border-transparent'
 						placeholder='Password'
-						required
 						type='password'
 						name='password'
 						id='password'
