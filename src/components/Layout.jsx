@@ -6,7 +6,7 @@ import { MainContext } from '../context/MainContext';
 
 //COMPONENTS
 import Header from './Header';
-import Footer from './Footer';
+import Buscador from './Buscador';
 //LIBRARIES
 import { ToastContainer } from 'react-toastify';
 
@@ -17,10 +17,10 @@ const Layout = () => {
 
 	return (
 		<>
+			<Outlet />
 			<Header login={login}/>
-			<Outlet login={login}/>
 			<ToastContainer />
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 };

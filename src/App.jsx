@@ -1,14 +1,15 @@
 //MODULES
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 //COMPONENTS
 import Layout from './components/Layout';
-import Login from './components/Login';
+import Login from './pages/Login';
 import Listado from './components/Listado';
-import Details from './components/Details';
-import SearchResults from './components/SearchResults';
-import FavsList from './components/FavsList';
+import MovieDetails from './components/MovieDetails';
+import FavsMovies from './pages/FavsMovies';
 import RequireAuth from './components/RequireAuth';
+import Home from './pages/Home';
+import SearchMovie from './pages/SearchMovie';
 
 //CONTEXTS
 import { MainProvider } from './context/MainContext';
@@ -17,57 +18,57 @@ function App() {
 	return (
 		<>
 			<MainProvider>
-					<Routes>
+				<Routes>
+					<Route
+						path='/'
+						element={<Layout />}>
 						<Route
 							path='/'
-							element={<Layout />}>
-							<Route
-								path='/'
-								element={<Login />}
-							/>
-							<Route
-								path='listado'
-								element={
-									<RequireAuth>
-										<Listado />
-									</RequireAuth>
-								}
-							/>
-							<Route
-								path='favs-list'
-								element={
-									<RequireAuth>
-										<FavsList />
-									</RequireAuth>
-								}
-							/>
-							<Route
-								path='details/:id'
-								element={
-									<RequireAuth>
-										<Details />
-									</RequireAuth>
-								}
-							/>
-							<Route
-								path='search-results/:keyword'
-								element={
-									<RequireAuth>
-										<SearchResults />
-									</RequireAuth>
-								}
-							/>
-							<Route
-								path='*'
-								element={
-									<Navigate
-										to='/'
-										replace
-									/>
-								}
-							/>
-						</Route>
-					</Routes>
+							element={<Login />}
+						/>
+						<Route
+							path='/home'
+							element={
+								<RequireAuth>
+									<Home />
+								</RequireAuth>
+							}
+						/>
+						<Route
+							path='/favs-movies'
+							element={
+								<RequireAuth>
+									<FavsMovies />
+								</RequireAuth>
+							}
+						/>
+						<Route
+							path='/details/:id'
+							element={
+								<RequireAuth>
+									<MovieDetails />
+								</RequireAuth>
+							}
+						/>
+						<Route
+							path='/search-movie'
+							element={
+								<RequireAuth>
+									<SearchMovie />
+								</RequireAuth>
+							}
+						/>
+						<Route
+							path='*'
+							element={
+								<Navigate
+									to='/'
+									replace
+								/>
+							}
+						/>
+					</Route>
+				</Routes>
 			</MainProvider>
 		</>
 	);

@@ -7,7 +7,7 @@ const RequireAuth = ({ children }) => {
 	if (!tokenSessionId) {
 		return (
 			<Navigate
-				to='/login'
+				to='/'
 				replace
 			/>
 		);

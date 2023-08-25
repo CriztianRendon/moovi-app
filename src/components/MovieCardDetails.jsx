@@ -17,11 +17,11 @@ const MovieCardDetails = ({ listForRender }) => {
 						<div
 							key={idx}
 							// className='grid grid-cols-1 ring-2 ring-slate-300 hover:ring-violet-500 rounded-b-lg'>
-							className='relative h-[197px] w-full rounded-lg bg-blue-950 hover:ring-4 hover:ring-purple-500 card-animation shadow-md'>
+							className='relative h-48 w-full rounded-lg bg-blue-950 hover:ring-4 hover:ring-purple-500 card-animation shadow-md'>
 							<Link to={`/details/${movie.id}`}>
 								<figure>
 									<img
-										className='backdrop_path w-full object-cover rounded-lg'
+										className='backdrop_path w-full h-48 object-cover rounded-lg'
 										src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
 										alt={movie.title}
 									/>

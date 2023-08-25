@@ -9,10 +9,10 @@ import { MainContext } from '../context/MainContext';
 
 //LIBS
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
-const Login = ({ login }) => {
-	const { setTokenSessionId } = useContext(MainContext);
+const FormLogin = () => {
+	const { getTokenSessionId, setTokenSessionId } = useContext(MainContext);
 	const navigate = useNavigate();
 
 	const optionsGuestSessionId = {
@@ -77,7 +77,7 @@ const Login = ({ login }) => {
 					position: toast.POSITION.BOTTOM_CENTER,
 					autoClose: 500,
 				});
-				navigate('/listado', { replace: true });
+				navigate('/home', { replace: true });
 			})
 			.catch((error) => {
 				toast.error('Algo falló al iniciar sesiòn. Intenta de nuevo', {
@@ -89,12 +89,12 @@ const Login = ({ login }) => {
 		// END REQUEST GUEST SESSION ID
 	};
 
-	let tokenSessionId = sessionStorage.getItem('tokenSessionId')
+	let tokenSessionId = getTokenSessionId();
 
 	return (
 		<>
-		{tokenSessionId && <Navigate to='/listado'/>}
-			<div className='container h-screen py-10 px-5 items-center md:w-1/4'>
+		{tokenSessionId && <Navigate to='/home'/>}
+			<main className='container py-10 px-5 items-center md:w-1/4'>
 				<h2 className='text-white text-center text-xl mb-5'>Ingresá</h2>
 				<form
 					className='flex flex-col gap-5 items-center '
@@ -115,15 +115,13 @@ const Login = ({ login }) => {
 					/>
 					<button
 					className='w-full text-white text-md font-semibold rounded-lg py-3 bg-gradient-to-br from-violet-900 to-blue-900 cursor-pointer'
-						type='submit'>
-						
-							Log In
+						type='submit'>		
+							Ingresar
 					</button>
 				</form>
-				<ToastContainer />
-			</div>
+			</main>
 		</>
 	);
 };
 
-export default Login;
+export default FormLogin;

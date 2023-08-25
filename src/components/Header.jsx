@@ -3,20 +3,18 @@ import { Link } from 'react-router-dom';
 
 //COMPONENTS
 import Navbar from './Navbar';
-import Buscador from './Buscador';
 
 const Header = ({ login }) => {
 	return (
-		<header className='container p-5 mb-5 flex flex-wrap items-center gap-5' >
+		<header className='fixed bottom-0 z-99 w-full py-3 px-5 flex flex-wrap items-center bg-gradient-to-t from-slate-900 to-transparent'>
 			<Link
-				to={login ? '/listado' : '/'}
-				className='font-Righteous text-4xl mr-auto md:mr-auto text-white cursor-pointer'>
+				to={login ? '/home' : '/'}
+				className='font-Righteous text-4xl mx-auto text-white cursor-pointer'>
 				mOOvi
 			</Link>
 			{login && (
 				<>
 					<Navbar />
-					<Buscador />
 				</>
 			)}
 		</header>

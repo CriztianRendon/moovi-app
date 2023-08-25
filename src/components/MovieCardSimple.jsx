@@ -18,7 +18,7 @@ const MovieCardSimple = ({ listForRender }) => {
 							key={idx}
 							className='relative flex-none w-2/5 md:w-2/5 lg:w-1/6 rounded-lg mr-1 p-2 grow'>
 							<button
-								className='absolute text-xl p-2 top-1 right-1 bg-purple-500 rounded-full px-1 py-1 flex items-center'
+								className='absolute text-xl p-1 top-1 right-1 bg-purple-500 rounded-full  flex items-center'
 								onClick={addOrRemFromFavs}
 								data-movie-id={movie.id}>
 								<FontAwesomeIcon

@@ -1,6 +1,6 @@
 //MODULES
 import { useState, useEffect } from 'react';
-import { useParams, Navigate} from 'react-router-dom';
+import { useParams, useLocation} from 'react-router-dom';
 
 //COMPONENTS
 
@@ -8,9 +8,8 @@ import { useParams, Navigate} from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
-const Details = () => {
-	const { id } = useParams();
-	
+const MovieDetails = () => {
+	const { id } = useParams();	
 
 	const [movieDetails, setMovieDetails] = useState([]);
 	const [genres, setGenres] = useState([]);
@@ -37,13 +36,15 @@ const Details = () => {
 			{movieDetails && (
 				<>
 					<div className='container'>
-						<h1 className='font-semibold text-xl'>{movieDetails.title}</h1>
-						<figure className='p-3'>
+						<figure className='relative w-full '>
 							<img
-								src={`https://image.tmdb.org/t/p/w200/${movieDetails.poster_path}`}
+							className='rounded-t-xl'
+								src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
 								alt={movieDetails.title}
 							/>
+							{/* <div className='absolute bottom-0 h-1/3 w-full rounded-t-xl bg-gradient-to-t from-slate-900 to-transparent'></div> */}
 						</figure>
+						<h1 className='text-center font-semibold text-3xl mb-5'>{movieDetails.title}</h1>
 						<span>{movieDetails.release_date}</span>
 						···
 						<span>{movieDetails.vote_average} </span>
@@ -62,4 +63,4 @@ const Details = () => {
 	);
 };
 
-export default Details;
+export default MovieDetails;
