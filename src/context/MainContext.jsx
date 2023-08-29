@@ -181,45 +181,39 @@ export const MainProvider = ({ children }) => {
 	//SEARCH MOVIE
 	const [keyword, setKeyword] = useState('');
 	const [movieSearchResults, setMovieSearchResults] = useState([]);
+	const [noResultsForSearch, setNoResultsForSearch] = useState(false);
 
 	useEffect(() => {
-		if (keyword.trim !== '') {
-			axios
-				.get(
-					`https://api.themoviedb.org/3/search/movie?api_key=06419c9c5f3e99fd614ed7eead050900&language=es-ES&sort_by=popularity.desc&include_adult=false&page=1&query=${keyword}`
-				)
-				.then((resp) => {
-					setMovieSearchResults(resp.data.results);
-				})
-				.catch((error) => {
-					console.log('Error:', error);
-					toast.error('Algo falló en la busqueda. Intenta de nuevo', {
-						position: toast.POSITION.BOTTOM_CENTER,
-						autoClose: 1000,
-					});
-				});
-		} else {
-			setMovieSearchResults([]);
-		}
-	}, [keyword]);
-
-	const NoResultsForSearch = () => {
-		if (movieSearchResults.length === 0) {
-			toast.error(
-				'No hay resultados para tu busqueda. Intenta con otra palabra',
-				{
+		axios
+			.get(
+				`https://api.themoviedb.org/3/search/movie?api_key=06419c9c5f3e99fd614ed7eead050900&language=es-ES&sort_by=popularity.desc&include_adult=false&page=1&query=${keyword}`
+			)
+			.then((resp) => {
+				let results = resp.data.results;
+				setMovieSearchResults(results);
+				if (keyword !== '') {
+					setNoResultsForSearch(results.length === 0);
+				}
+			})
+			.catch((error) => {
+				console.log('Error:', error);
+				toast.error('Algo falló en la busqueda. Intenta de nuevo', {
 					position: toast.POSITION.BOTTOM_CENTER,
 					autoClose: 1000,
-				}
-			);
-		}
-	};
+				});
+			});
+	}, [keyword]);
 
 	const handleSearch = (e) => {
 		e.preventDefault();
-		console.log(e.target.value);
-		setKeyword(e.target.value);
+		const inputValue = e.target.value;
+		console.log(inputValue);
+		setKeyword(inputValue);
 	};
+
+	const clearSearchForm  = (e) => {
+		setKeyword('');
+	}
 
 	//END SEARCH MOVIE
 
@@ -236,8 +230,11 @@ export const MainProvider = ({ children }) => {
 				setTokenSessionId,
 				deleteToken,
 				handleSearch,
+				clearSearchForm,
+				keyword,
 				setKeyword,
 				movieSearchResults,
+				noResultsForSearch,
 			}}>
 			{children}
 		</MainContext.Provider>

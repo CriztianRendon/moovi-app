@@ -7,7 +7,13 @@ import Buscador from '../components/Buscador';
 import MovieCardDetails from '../components/MovieCardDetails';
 
 const SearchMovie = () => {
-	const { movieSearchResults, setKeyword } = useContext(MainContext);
+	const {
+		movieSearchResults,
+		keyword,
+		setKeyword,
+		noResultsForSearch,
+		movieListNow,
+	} = useContext(MainContext);
 	console.log(movieSearchResults);
 
 	useEffect(() => {
@@ -19,14 +25,33 @@ const SearchMovie = () => {
 	return (
 		<>
 			<Buscador />
+			{noResultsForSearch && (
+				<>
+					<div className='container px-5 pb-5'>
+						<p className='text-center text-xl'>
+							Sin resultados para{' '}
+							<span className='font-semibold'>{keyword}</span>
+						</p>
+					</div>
+					<hr className='m-auto w-1/2'/>
+				</>
+			)}
 			{movieSearchResults.length !== 0 ? (
-				<main className='container mt-40'>
-					<h2 className='ml-5 text-md'>Resultados</h2>
+				<main className='container py-5'>
+					<p className='text-center text-xl'>
+						Resultados para <span className='font-semibold'>{keyword}</span>
+					</p>
+
 					<MovieCardDetails
 						listForRender={movieSearchResults}></MovieCardDetails>
 				</main>
 			) : (
-				<h1>Añadir componente con listados por categorias</h1>
+				<main className='container py-5'>
+					<p className='text-center text-xl font-semibold'>
+						Explorá lo más popular
+					</p>
+					<MovieCardDetails listForRender={movieListNow}></MovieCardDetails>
+				</main>
 			)}
 		</>
 	);
