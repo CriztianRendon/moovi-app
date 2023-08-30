@@ -1,6 +1,6 @@
 //MODULES
 import { createContext, useState, useEffect } from 'react';
-import { useActionData, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //LIBS
 import axios from 'axios';
@@ -160,6 +160,7 @@ export const MainProvider = ({ children }) => {
 			toast('Peli agregada', {
 				position: toast.POSITION.BOTTOM_CENTER,
 				autoClose: 500,
+				draggable: false
 			});
 			//REMOVE A MOVIE FROM THE LIST
 		} else {
@@ -173,6 +174,7 @@ export const MainProvider = ({ children }) => {
 			toast('Peli borrada', {
 				position: toast.POSITION.BOTTOM_CENTER,
 				autoClose: 500,
+				draggable: false
 			});
 		}
 	};

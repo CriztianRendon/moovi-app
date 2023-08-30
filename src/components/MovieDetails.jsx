@@ -1,15 +1,18 @@
 //MODULES
 import { useState, useEffect } from 'react';
-import { useParams, useLocation} from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 //COMPONENTS
 
 //LIBS
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+//ICONS
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faFilm, faStar } from '@fortawesome/free-solid-svg-icons';
 
 const MovieDetails = () => {
-	const { id } = useParams();	
+	const { id } = useParams();
 
 	const [movieDetails, setMovieDetails] = useState([]);
 	const [genres, setGenres] = useState([]);
@@ -21,7 +24,7 @@ const MovieDetails = () => {
 			.then((resp) => {
 				setMovieDetails(resp.data);
 				setGenres(resp.data.genres);
-        console.log(id);
+				console.log(id);
 			})
 			.catch((error) => {
 				toast.error('Algo falló al cargar los detalles. ReloadIt!', {
@@ -31,34 +34,51 @@ const MovieDetails = () => {
 			});
 	}, []);
 
+	console.log(movieDetails);
+
 	return (
 		<>
 			{movieDetails && (
-				<>
-					<div className='container'>
-						<figure className='relative w-full '>
+					<main className='w-full'>
+						<div className='relative'>
 							<img
-							className='rounded-t-xl'
+								className='aspect-auto object-cover'
 								src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
 								alt={movieDetails.title}
 							/>
-							{/* <div className='absolute bottom-0 h-1/3 w-full rounded-t-xl bg-gradient-to-t from-slate-900 to-transparent'></div> */}
-						</figure>
-						<h1 className='text-center font-semibold text-3xl mb-5'>{movieDetails.title}</h1>
-						<span>{movieDetails.release_date}</span>
-						···
-						<span>{movieDetails.vote_average} </span>
-						<p>{movieDetails.overview}</p>
-						<h2>Géneros</h2>
-						<ul>
-							{genres.map((genre) => (
-								<li key={genre.id}>{genre.name}</li>
-							))}
-						</ul>
-					</div>
-				</>
+							<div className='absolute bottom-0 h-1/3 w-full bg-gradient-to-t from-blue-950 to-transparent'></div>
+						</div>
+						<div className='relative -mt-10 px-5'>
+							<div className='flex flex-row gap-5 justify-center mb-3'>
+								<div className='flex items-center text-sm font-semibold bg-yellow-500 rounded-full px-2 py-1'>
+									<FontAwesomeIcon
+										className='text-white mr-1'
+										icon={faStar}
+									/>
+									<span className='ranked'>{movieDetails.vote_average} </span>
+								</div>
+								<div className='flex items-center text-sm font-semibold'>
+									<FontAwesomeIcon
+										className='text-blue-500 mr-1'
+										icon={faFilm}
+									/>
+									<span className='releaseDate'>
+										{movieDetails.release_date}
+									</span>
+								</div>
+							</div>
+							<h1 className='text-center font-semibold text-3xl mb-5'>
+								{movieDetails.title}
+							</h1>
+							<ul className='flex flex-row justify-center gap-2 mb-5'>
+								{genres.map((genre) => (
+									<li className='text-xs font-semibold bg-blue-900 py-1 px-2 rounded-lg' key={genre.id}>{genre.name}</li>
+								))}
+							</ul>
+							<p className='text-sm'>{movieDetails.overview}</p>
+						</div>
+					</main>
 			)}
-			<ToastContainer />
 		</>
 	);
 };

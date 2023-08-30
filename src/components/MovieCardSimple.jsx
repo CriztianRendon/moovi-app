@@ -5,11 +5,16 @@ import { Link } from 'react-router-dom';
 import { MainContext } from '../context/MainContext';
 //ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
-const MovieCardSimple = ({ listForRender }) => {
+const MovieCardSimple = ({ listForRender, listTitle }) => {
 	const { addOrRemFromFavs } = useContext(MainContext);
 	return (
+		<div className='container mb-5'>
+		<div className='flex items-baseline justify-between px-5 py-3'>
+			<h2 className='text-lg font-bold'>{listTitle}</h2>
+			<Link className='text-sm'>Ver todo <FontAwesomeIcon icon={faAngleRight} /> </Link>
+		</div>
 		<div className='container overflow-x-hidden'>
 			<div className='relative flex flex-nowrap overflow-x-scroll overflow-y-hidden items-start scroll-smooth touch-auto px-3'>
 				{listForRender.map((movie, idx) => {
@@ -22,14 +27,14 @@ const MovieCardSimple = ({ listForRender }) => {
 								onClick={addOrRemFromFavs}
 								data-movie-id={movie.id}>
 								<FontAwesomeIcon
-									className='text-white h-4 w-auto'
+									className='text-white h-3 w-auto'
 									icon={faHeart}
 								/>
 							</button>
 							<Link to={`/details/${movie.id}`}>
 								<figure>
 									<img
-										className='rounded-lg shadow-md hover:ring-4 hover:ring-purple-500 -z-10'
+										className='rounded-lg shadow-sm hover:ring-4 hover:ring-purple-500 -z-10'
 										src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
 										alt={movie.title}
 									/>
@@ -56,6 +61,8 @@ const MovieCardSimple = ({ listForRender }) => {
 				})}
 			</div>
 		</div>
+
+	</div>
 	);
 };
 

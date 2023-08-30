@@ -93,9 +93,11 @@ const FormLogin = () => {
 
 	return (
 		<>
-		{tokenSessionId && <Navigate to='/home'/>}
+			{tokenSessionId && <Navigate to='/home' />}
 			<main className='container py-10 px-5 items-center md:w-1/4'>
-				<h2 className='text-white text-center text-xl mb-5'>Ingresá</h2>
+				<h1 className='font-Righteous text-4xl text-center mb-5'>
+					mOOvi
+				</h1>
 				<form
 					className='flex flex-col gap-5 items-center '
 					onSubmit={handleSubmit}>
@@ -114,9 +116,9 @@ const FormLogin = () => {
 						id='password'
 					/>
 					<button
-					className='w-full text-white text-md font-semibold rounded-lg py-3 bg-gradient-to-br from-violet-900 to-blue-900 cursor-pointer'
-						type='submit'>		
-							Ingresar
+						className='w-full text-white text-md font-semibold rounded-lg py-3 bg-gradient-to-br from-violet-900 to-blue-900 cursor-pointer'
+						type='submit'>
+						Ingresá
 					</button>
 				</form>
 			</main>

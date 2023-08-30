@@ -4,7 +4,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 //COMPONENTS
 import Layout from './components/Layout';
 import Login from './pages/Login';
-import Listado from './components/Listado';
 import MovieDetails from './components/MovieDetails';
 import FavsMovies from './pages/FavsMovies';
 import RequireAuth from './components/RequireAuth';
