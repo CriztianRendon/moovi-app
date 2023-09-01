@@ -130,7 +130,7 @@ export const MainProvider = ({ children }) => {
 	//ADD OR REMOVE A MOVIE OF FAVS MOVIE LIST
 	//CREATE LIST OF FAVS MOVIES IN LOCAL STORAGE
 	const addOrRemFromFavs = (e) => {
-		e.stopPropagation();
+		// e.stopPropagation();
 		const itemFavsMovieList = localStorage.getItem('itemFavsMovieList');
 		let favsMovieList;
 
@@ -177,6 +177,7 @@ export const MainProvider = ({ children }) => {
 				draggable: false
 			});
 		}
+		console.log(favsMovieList)
 	};
 	//END ADD OR REMOVE A MOVIE OF FAVS MOVIE LIST
 
