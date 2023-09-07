@@ -37,14 +37,22 @@ const FavsList = () => {
 								<Link to={`/details/${movie.id}`}>
 									<figure>
 										<img
+											id='backdrop_path'
 											className='backdrop_path w-full h-48 object-cover rounded-lg'
 											src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+											alt={movie.title}
+										/>
+										<img
+											id='poster_path'
+											className='hidden'
+											src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 											alt={movie.title}
 										/>
 										<div className='absolute bottom-0 h-2/3 w-full rounded-lg bg-gradient-to-t from-slate-900 to-transparent'></div>
 									</figure>
 								</Link>
 								<FavButton
+								className={'absolute text-sm p-1 -top-1 -right-1'}
 									isFav={isFav}
 									movieId={movie.id}
 								/>
@@ -55,17 +63,29 @@ const FavsList = () => {
 												className='text-white mr-1'
 												icon={faStar}
 											/>
-											<span className='ranked'>{movie.ranked} </span>
+											<span
+												id='ranked'
+												className='ranked'>
+												{movie.ranked}{' '}
+											</span>
 										</div>
 										<div className='flex items-center text-xs font-semibold'>
 											<FontAwesomeIcon
 												className='text-blue-500 mr-1'
 												icon={faFilm}
 											/>
-											<span className='releaseDate'>{movie.releaseDate}</span>
+											<span
+												id='releaseDate'
+												className='releaseDate'>
+												{movie.releaseDate}
+											</span>
 										</div>
 									</div>
-									<h1 className='font-semibold text-md'>{movie.title}</h1>
+									<h1
+										id='movieTitle'
+										className='movieTitle font-semibold text-md'>
+										{movie.title}
+									</h1>
 								</div>
 							</div>
 						);

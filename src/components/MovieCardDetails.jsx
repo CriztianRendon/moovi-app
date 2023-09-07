@@ -26,14 +26,22 @@ const MovieCardDetails = ({ listForRender }) => {
 							<Link to={`/details/${movie.id}`}>
 								<figure>
 									<img
+										id='backdrop_path'
 										className='backdrop_path w-full h-48 object-cover rounded-lg'
 										src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+										alt={movie.title}
+									/>
+									<img
+										id='poster_path'
+										className='hidden'
+										src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 										alt={movie.title}
 									/>
 									<div className='absolute bottom-0 h-2/3 w-full rounded-lg bg-gradient-to-t from-slate-900 to-transparent'></div>
 								</figure>
 							</Link>
 							<FavButton
+							className={'absolute text-xs p-1 -top-1 -right-1'}
 								isFav={isFav}
 								movieId={movie.id}
 							/>
@@ -44,7 +52,9 @@ const MovieCardDetails = ({ listForRender }) => {
 											className='text-white mr-1'
 											icon={faStar}
 										/>
-										<span className='ranked'>
+										<span
+											id='ranked'
+											className='ranked'>
 											{movie.vote_average.toFixed(1)}{' '}
 										</span>
 									</div>
@@ -53,20 +63,18 @@ const MovieCardDetails = ({ listForRender }) => {
 											className='text-blue-500 mr-1'
 											icon={faFilm}
 										/>
-										<span className='releaseDate'>
+										<span
+											id='releaseDate'
+											className='releaseDate'>
 											{movie.release_date.substring(0, 4)}
 										</span>
 									</div>
 								</div>
-								<h1 className='font-semibold text-md'>{movie.title}</h1>
-								{/* <p className='text-xs'>{movie.overview.substring(0, 50)}...</p> */}
-								{/* <div className='self-end'>
-												<Link
-													className='text-sm font-light hover:text-violet-300'
-													to={`/details/${movie.id}`}>
-													Más info ➡️
-												</Link>
-											</div> */}
+								<h1
+									id='movieTitle'
+									className='movieTitle font-semibold text-md'>
+									{movie.title}
+								</h1>
 							</div>
 						</div>
 					);

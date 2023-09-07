@@ -13,15 +13,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilm, faStar } from '@fortawesome/free-solid-svg-icons';
 
 const MovieDetails = () => {
-	const { id } = useParams()
-	const [movieDetails, setMovieDetails] = useState([])
-	const [genres, setGenres] = useState([])
-	const {favsMovieList } = useContext(MainContext)
+	const { id } = useParams();
+	const [movieDetails, setMovieDetails] = useState([]);
+	const [genres, setGenres] = useState([]);
+	const { favsMovieList } = useContext(MainContext);
 
-	const isFav = favsMovieList.some(
-		(favMovie) => favMovie.id == movie.id
-	);
-
+	const isFav = favsMovieList.some((favMovie) => favMovie.id == id);
+	console.log(isFav);
 
 	useEffect(() => {
 		const endPoint = `https://api.themoviedb.org/3/movie/${id}?api_key=06419c9c5f3e99fd614ed7eead050900&language=es-ES`;
@@ -40,16 +38,28 @@ const MovieDetails = () => {
 			});
 	}, []);
 
-	console.log(movieDetails);
+	// console.log(movieDetails);
 
 	return (
 		<>
 			{movieDetails && (
-				<main className='w-full pb-20'>
+				<main className='relative w-full pb-20'>
+						<FavButton
+						className={'absolute z-10 text-md p-2 top-5 right-5 '}
+							isFav={isFav}
+							movieId={movieDetails.id}
+						/>
 					<div className='relative'>
 						<img
+							id='poster_path'
 							className='aspect-auto object-cover'
 							src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
+							alt={movieDetails.title}
+						/>
+						<img
+							id='backdrop_path'
+							className='hidden'
+							src={`https://image.tmdb.org/t/p/w500/${movieDetails.backdrop_path}`}
 							alt={movieDetails.title}
 						/>
 						<div className='absolute bottom-0 h-1/3 w-full bg-gradient-to-t from-blue-950 to-transparent'></div>
@@ -61,21 +71,23 @@ const MovieDetails = () => {
 									className='text-white mr-1'
 									icon={faStar}
 								/>
-								<span className='ranked'>{movieDetails.vote_average} </span>
+								<span
+									id='ranked'
+									className='ranked'>
+									{movieDetails.vote_average}{' '}
+								</span>
 							</div>
 							<div className='flex items-center text-sm font-semibold'>
-								<FontAwesomeIcon
-									className='text-blue-500 mr-1'
-									icon={faFilm}
-								/>
-								<span className='releaseDate'>{movieDetails.release_date}</span>
+								<span
+									id='releaseDate'
+									className='releaseDate'>
+									{movieDetails.release_date}
+								</span>
 							</div>
-							<FavButton
-									isFav={isFav}
-									movieId={movieDetails.id}
-								/>
 						</div>
-						<h1 className='text-center font-semibold text-3xl mb-5'>
+						<h1
+							id='movieTitle'
+							className='text-center font-semibold text-3xl mb-5'>
 							{movieDetails.title}
 						</h1>
 						<ul className='flex flex-row justify-center gap-2 mb-5'>

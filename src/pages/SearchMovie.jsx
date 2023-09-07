@@ -23,7 +23,7 @@ const SearchMovie = () => {
 	}, []);
 
 	return (
-		<>
+		<main className='pt-28'>
 			<Buscador />
 			{noResultsForSearch && (
 				<>
@@ -37,23 +37,23 @@ const SearchMovie = () => {
 				</>
 			)}
 			{movieSearchResults.length !== 0 ? (
-				<main className='container py-5 pb-10'>
+				<div className='container py-5 pb-10'>
 					<p className='text-center text-xl'>
 						Resultados para <span className='font-semibold'>{keyword}</span>
 					</p>
 
 					<MovieCardDetails
 						listForRender={movieSearchResults}></MovieCardDetails>
-				</main>
+				</div>
 			) : (
-				<main className='container py-5 pb-10'>
+				<div className='container py-5 pb-10'>
 					<p className='text-center text-xl font-semibold'>
 						Explorá lo más popular
 					</p>
 					<MovieCardDetails listForRender={movieListNow}></MovieCardDetails>
-				</main>
+				</div>
 			)}
-		</>
+		</main>
 	);
 };
 

@@ -7,15 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 
-const FavButton = ( {isFav , movieId}) => {
+const FavButton = ( {isFav , movieId, className}) => {
   const { addOrRemFromFavs } = useContext(MainContext);
   return (
     <button
-    className={`absolute text-xl p-1 top-1 right-1 rounded-full  flex items-center ${isFav ? 'bg-purple-500' : 'bg-slate-900'}`}
+    className={`rounded-full flex items-center ${className} ${isFav ? 'bg-purple-500' : 'bg-slate-900'}`}
     onClick={addOrRemFromFavs}
     data-movie-id={movieId}>
     <FontAwesomeIcon
-      className='text-white h-3 w-auto'
+      className='text-white'
       icon={faHeart}
     />
   </button>

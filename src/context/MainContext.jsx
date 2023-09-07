@@ -142,13 +142,17 @@ export const MainProvider = ({ children }) => {
 
 		//GET VALUES OF THE SELECTED MOVIE AND CREATE A LITERAL OBJECT
 		const getCardMovie = e.currentTarget.parentElement;
+	console.log(getCardMovie)
 		const infoMovie = {
 			id: e.currentTarget.dataset.movieId,
-			title: getCardMovie.querySelector('h1').innerText,
-			releaseDate: getCardMovie.querySelector('.releaseDate').innerHTML,
-			ranked: getCardMovie.querySelector('.ranked').innerHTML,
+			title: getCardMovie.querySelector('#movieTitle').innerText,
+			releaseDate: getCardMovie.querySelector('#releaseDate').innerText,
+			ranked: getCardMovie.querySelector('#ranked').innerText,
 			backdrop_path: getCardMovie
-				.querySelector('.backdrop_path')
+				.querySelector('#backdrop_path')
+				.getAttribute('src'),
+			poster_path: getCardMovie
+				.querySelector('#poster_path')
 				.getAttribute('src'),
 		};
 
@@ -160,7 +164,7 @@ export const MainProvider = ({ children }) => {
 			toast('Peli agregada', {
 				position: toast.POSITION.BOTTOM_CENTER,
 				autoClose: 500,
-				draggable: false
+				draggable: false,
 			});
 			//REMOVE A MOVIE FROM THE LIST
 		} else {
@@ -174,10 +178,10 @@ export const MainProvider = ({ children }) => {
 			toast('Peli borrada', {
 				position: toast.POSITION.BOTTOM_CENTER,
 				autoClose: 500,
-				draggable: false
+				draggable: false,
 			});
 		}
-		console.log(favsMovieList)
+		console.log(favsMovieList);
 	};
 	//END ADD OR REMOVE A MOVIE OF FAVS MOVIE LIST
 
@@ -214,9 +218,9 @@ export const MainProvider = ({ children }) => {
 		setKeyword(inputValue);
 	};
 
-	const clearSearchForm  = (e) => {
+	const clearSearchForm = (e) => {
 		setKeyword('');
-	}
+	};
 
 	//END SEARCH MOVIE
 

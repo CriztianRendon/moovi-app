@@ -11,7 +11,7 @@ const Buscador = () => {
 	const { handleSearch, clearSearchForm, keyword } = useContext(MainContext);
 
 	return (
-			<div className='flex container w-full p-5'>
+			<div className='container fixed top-0 z-10 flex bg-blue-950 shadow-md w-full p-5'>
 				<button className='bg-slate-700 rounded-l-lg'>
 					{keyword !== '' ? (
 						<FontAwesomeIcon

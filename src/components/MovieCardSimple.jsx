@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 const MovieCardSimple = ({ listForRender, listTitle }) => {
-	const {favsMovieList } = useContext(MainContext);
+	const { favsMovieList } = useContext(MainContext);
 	return (
 		<div className='container mb-5'>
 			<div className='flex items-baseline justify-between px-5 py-3'>
@@ -30,6 +30,7 @@ const MovieCardSimple = ({ listForRender, listTitle }) => {
 								key={movie.id}
 								className='relative flex-none w-2/5 md:w-2/5 lg:w-1/6 rounded-lg mr-1 p-2 grow'>
 								<FavButton
+									className={'absolute text-xs p-1 top-1 right-1'}
 									isFav={isFav}
 									movieId={movie.id}
 								/>
@@ -45,25 +46,31 @@ const MovieCardSimple = ({ listForRender, listTitle }) => {
 								<Link to={`/details/${movie.id}`}>
 									<figure>
 										<img
+											id='poster_path'
 											className='rounded-lg shadow-sm hover:ring-4 hover:ring-purple-500 -z-10'
 											src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
 											alt={movie.title}
 										/>
 									</figure>
 								</Link>
-								<h1 className='hidden'>{movie.title}</h1>
+								<h1
+									id='movieTitle'
+									className='hidden'>
+									{movie.title}
+								</h1>
 								<span
-									className='ranked hidden'
-									id='ranked'>
+									id='ranked'
+									className=' hidden'>
 									{movie.vote_average.toFixed(1)}
 								</span>
 								<span
-									className='releaseDate hidden'
-									id='releaseDate'>
+									id='releaseDate'
+									className=' hidden'>
 									{movie.release_date.substring(0, 4)}
 								</span>
 								<img
-									className='backdrop_path hidden'
+									id='backdrop_path'
+									className='hidden'
 									src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`}
 									alt={movie.title}
 								/>
