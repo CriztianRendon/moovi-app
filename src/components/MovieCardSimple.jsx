@@ -16,7 +16,7 @@ const MovieCardSimple = ({ listForRender, listTitle }) => {
 			<div className='flex items-baseline justify-between px-5 py-3'>
 				<h2 className='text-lg font-bold'>{listTitle}</h2>
 				<Link className='text-sm'>
-					Ver todo <FontAwesomeIcon icon={faAngleRight} />{' '}
+					Ver todo <FontAwesomeIcon icon={faAngleRight} />
 				</Link>
 			</div>
 			<div className='container overflow-x-hidden'>

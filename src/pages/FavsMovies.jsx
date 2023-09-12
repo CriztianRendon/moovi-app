@@ -5,7 +5,6 @@ const FavsMovies = () => {
   return (
     <div>
       <FavsList></FavsList>
-      
     </div>
   )
 }

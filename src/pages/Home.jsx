@@ -15,7 +15,6 @@ const Home = () => {
 
 	return (
 		<main className='pb-10'>
-			
 			<MovieCardSimple
 				listForRender={movieListNow}
 				listTitle={'Populares'}></MovieCardSimple>

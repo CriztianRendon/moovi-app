@@ -33,7 +33,7 @@ const SearchMovie = () => {
 							<span className='font-semibold'>{keyword}</span>
 						</p>
 					</div>
-					<hr className='m-auto w-1/2'/>
+					<hr className='m-auto w-1/2' />
 				</>
 			)}
 			{movieSearchResults.length !== 0 ? (
@@ -41,7 +41,6 @@ const SearchMovie = () => {
 					<p className='text-center text-xl'>
 						Resultados para <span className='font-semibold'>{keyword}</span>
 					</p>
-
 					<MovieCardDetails
 						listForRender={movieSearchResults}></MovieCardDetails>
 				</div>

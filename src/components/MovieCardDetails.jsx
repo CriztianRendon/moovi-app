@@ -9,7 +9,7 @@ import FavButton from '../components/FavButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faFilm, faStar } from '@fortawesome/free-solid-svg-icons';
 
-const MovieCardDetails = ({ listForRender }) => {
+const MovieCardDetails = ({ listForRender, listTitle }) => {
 	const { favsMovieList } = useContext(MainContext);
 	return (
 		<div className='container'>
@@ -55,7 +55,7 @@ const MovieCardDetails = ({ listForRender }) => {
 										<span
 											id='ranked'
 											className='ranked'>
-											{movie.vote_average.toFixed(1)}{' '}
+											{movie.vote_average.toFixed(1)}
 										</span>
 									</div>
 									<div className='flex items-center text-xs font-semibold'>
