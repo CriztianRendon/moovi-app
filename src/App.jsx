@@ -8,6 +8,7 @@ import MovieDetails from './components/MovieDetails';
 import FavsMovies from './pages/FavsMovies';
 import RequireAuth from './components/RequireAuth';
 import Home from './pages/Home';
+import MovieList from './pages/MovieList';
 import SearchMovie from './pages/SearchMovie';
 
 //CONTEXTS
@@ -30,6 +31,14 @@ function App() {
 							element={
 								<RequireAuth>
 									<Home />
+								</RequireAuth>
+							}
+						/>
+						<Route
+							path='/list/:title'
+							element={
+								<RequireAuth>
+									<MovieList />
 								</RequireAuth>
 							}
 						/>

@@ -15,15 +15,20 @@ const Home = () => {
 
 	return (
 		<main className='pb-10'>
-			<MovieCardSimple
-				listForRender={movieListNow}
-				listTitle={'Populares'}></MovieCardSimple>
-			<MovieCardSimple
-				listForRender={movieListTopRated}
-				listTitle={'Top ranked'}></MovieCardSimple>
-			<MovieCardSimple
-				listForRender={movieListUpcoming}
-				listTitle={'Próximos estrenos'}></MovieCardSimple>
+			<div className='fixed top-0 z-10 bg-slate-900 shadow-md w-full p-5 md:top-16'>
+				<h1 className='font-semibold text-center text-xl'>Explorá</h1>
+			</div>
+			<div className='pt-20 md:pt-40'>
+				<MovieCardSimple
+					listForRender={movieListNow}
+					listTitle={'Populares'}></MovieCardSimple>
+				<MovieCardSimple
+					listForRender={movieListTopRated}
+					listTitle={'Top ranked'}></MovieCardSimple>
+				<MovieCardSimple
+					listForRender={movieListUpcoming}
+					listTitle={'Próximos estrenos'}></MovieCardSimple>
+			</div>
 		</main>
 	);
 };

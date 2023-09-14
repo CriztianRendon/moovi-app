@@ -7,13 +7,13 @@ import { MainContext } from '../context/MainContext';
 import FavButton from '../components/FavButton';
 //ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faFilm, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faFilm, faStar } from '@fortawesome/free-solid-svg-icons';
 
 const FavsList = () => {
-	const { favsMovieList, addOrRemFromFavs } = useContext(MainContext);
+	const { favsMovieList} = useContext(MainContext);
 
 	return (
-		<main className='container'>
+		<main className='container pt-20'>
 			{favsMovieList.length === 0 ? (
 				<div className='container py-10 px-5 md:w-1/4'>
 					<h2 className='text-center mb-3'>Nada por acá</h2>
@@ -24,7 +24,7 @@ const FavsList = () => {
 					</Link>
 				</div>
 			) : (
-				<div className='flex flex-col gap-5 croll-smooth touch-auto px-5 pt-5 pb-10'>
+				<div className='flex flex-col gap-5 croll-smooth touch-auto px-5 pt-5 pb-20'>
 					{favsMovieList.map((movie) => {
 						const isFav = favsMovieList.some(
 							(favMovie) => favMovie.id == movie.id

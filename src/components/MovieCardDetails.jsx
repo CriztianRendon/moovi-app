@@ -13,6 +13,7 @@ const MovieCardDetails = ({ listForRender, listTitle }) => {
 	const { favsMovieList } = useContext(MainContext);
 	return (
 		<div className='container'>
+			<h1 className='font-semibold text-xl text-center'>{listTitle}</h1>
 			<div className='flex flex-col gap-5 croll-smooth touch-auto px-5 pt-5 pb-10'>
 				{listForRender.map((movie) => {
 					const isFav = favsMovieList.some(

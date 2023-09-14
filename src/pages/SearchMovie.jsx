@@ -27,29 +27,27 @@ const SearchMovie = () => {
 			<Buscador />
 			{noResultsForSearch && (
 				<>
-					<div className='container px-5 pb-5'>
-						<p className='text-center text-xl'>
-							Sin resultados para{' '}
-							<span className='font-semibold'>{keyword}</span>
-						</p>
+					<div className='container px-5 mb-5'>
+						<div className='bg-slate-700 py-5 rounded-xl'>
+							<p className='text-center text-xl'>
+								Sin resultados para{' '}
+								<span className='font-semibold'>"{keyword}"</span>
+							</p>
+						</div>
 					</div>
-					<hr className='m-auto w-1/2' />
 				</>
 			)}
 			{movieSearchResults.length !== 0 ? (
-				<div className='container py-5 pb-10'>
-					<p className='text-center text-xl'>
-						Resultados para <span className='font-semibold'>{keyword}</span>
-					</p>
+				<div className='container pb-10'>
 					<MovieCardDetails
-						listForRender={movieSearchResults}></MovieCardDetails>
+						listForRender={movieSearchResults}
+						listTitle={`Resultados para "${keyword}"`}></MovieCardDetails>
 				</div>
 			) : (
-				<div className='container py-5 pb-10'>
-					<p className='text-center text-xl font-semibold'>
-						Explorá lo más popular
-					</p>
-					<MovieCardDetails listForRender={movieListNow}></MovieCardDetails>
+				<div className='container pb-10'>
+					<MovieCardDetails
+						listForRender={movieListNow}
+						listTitle={'Explorá lo más popular'}></MovieCardDetails>
 				</div>
 			)}
 		</main>
